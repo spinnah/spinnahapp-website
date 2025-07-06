@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComicSpinnah - SpinnahApp</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Additional styles for iframe integration */
+        .app-iframe-container {
+            width: 100%;
+            min-height: 100vh;
+            margin-top: -80px; /* Compensate for fixed nav */
+            padding-top: 80px; /* Space for fixed nav */
+        }
+        
+        .app-iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        
+        .iframe-intro {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 80px; /* Space for fixed nav */
+        }
+        
+        .iframe-intro h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .iframe-intro p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Hide default body overflow when iframe is present */
+        body.iframe-page {
+            overflow-x: hidden;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .iframe-intro h1 {
+                font-size: 2rem;
+            }
+            
+            .iframe-intro p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .app-iframe {
+                height: calc(100vh - 80px);
+            }
+        }
+        
+        /* Loading animation for iframe */
+        .iframe-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background: #f5f5f7;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="iframe-page">
+    <!-- Navigation (same as main site) -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">SpinnahApp</a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="mobile-menu-button" aria-label="Toggle mobile navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#apps">Apps</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Brief intro section -->
+    <section class="iframe-intro">
+        <h1>ComicSpinnah</h1>
+        <p>A powerful tool for comic creators and storytellers. Part of the SpinnahApp ecosystem.</p>
+    </section>
+
+    <!-- Loading indicator -->
+    <div class="iframe-loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Iframe container for ComicSpinnah content -->
+    <div class="app-iframe-container">
+        <iframe 
+            src="https://comicspinnah.com" 
+            class="app-iframe"
+            title="ComicSpinnah Application"
+            onload="hideLoading()"
+            frameborder="0"
+            allowfullscreen>
+            <p>Your browser doesn't support iframes. Please visit <a href="https://comicspinnah.com">ComicSpinnah directly</a>.</p>
+        </iframe>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        // Hide loading indicator when iframe loads
+        function hideLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.display = 'none';
+            }
+        }
+        
+        // Handle iframe responsiveness
+        function resizeIframe() {
+            const iframe = document.querySelector('.app-iframe');
+            if (iframe) {
+                // Adjust iframe height based on window size
+                iframe.style.height = (window.innerHeight - 140) + 'px'; // Account for nav and intro
+            }
+        }
+        
+        // Resize on load and window resize
+        window.addEventListener('load', resizeIframe);
+        window.addEventListener('resize', resizeIframe);
+        
+        // Ensure mobile menu works on this page too
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality is already in main.js
+            // Just ensure navigation links work properly with iframe
+            document.querySelectorAll('.nav-links a[href^="/#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Navigate to main site with hash
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
