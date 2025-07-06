@@ -134,7 +134,7 @@ nav {
 
 .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 3rem;
     margin-top: 4rem;
 }
@@ -162,6 +162,10 @@ nav {
 
 .comic-spinnah .app-card-header {
     background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+}
+
+.comic-reader .app-card-header {
+    background: linear-gradient(135deg, #A8E6CF 0%, #3D5A80 100%);
 }
 
 .script-spinnah .app-card-header {
@@ -269,6 +273,19 @@ nav {
 
 .btn-github:hover {
     background: #1a1e22;
+}
+
+.btn-coming-soon {
+    background: #f0f0f0 !important;
+    color: #999 !important;
+    cursor: not-allowed !important;
+    border: 2px solid #ddd !important;
+}
+
+.btn-coming-soon:hover {
+    background: #f0f0f0 !important;
+    color: #999 !important;
+    transform: none !important;
 }
 
 /* Footer */

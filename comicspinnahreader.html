@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComicSpinnah Reader - Coming Soon | SpinnahApp</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Coming Soon specific styles */
+        .coming-soon-hero {
+            background: linear-gradient(135deg, #A8E6CF 0%, #3D5A80 100%);
+            color: white;
+            padding: 120px 2rem 80px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coming-soon-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="comics" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23comics)"/></svg>');
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .coming-soon-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .coming-soon-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .coming-soon-hero .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .coming-soon-hero .description {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+        
+        .notify-form {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+        
+        .notify-form h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .notify-form p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .email-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1d1d1f;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .email-input::placeholder {
+            color: #6e6e73;
+        }
+        
+        .notify-btn {
+            padding: 1rem 1.5rem;
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .notify-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .privacy-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+        
+        /* Features Preview Section */
+        .features-preview {
+            padding: 100px 2rem;
+            background: #f5f5f7;
+        }
+        
+        .preview-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .preview-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #A8E6CF 0%, #3D5A80 100%);
+        }
+        
+        .preview-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .preview-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+        
+        .preview-card p {
+            color: #6e6e73;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .timeline-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-item p {
+            opacity: 0.9;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .email-input-group {
+                flex-direction: column;
+            }
+            
+            .notify-btn {
+                width: 100%;
+            }
+            
+            .preview-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (same as main site) -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">SpinnahApp</a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="mobile-menu-button" aria-label="Toggle mobile navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#apps">Apps</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Coming Soon Hero Section -->
+    <section class="coming-soon-hero">
+        <div class="hero-content">
+            <div class="coming-soon-badge">🚀 Coming Soon</div>
+            <h1>ComicSpinnah Reader</h1>
+            <p class="subtitle">The Future of Comic Reading</p>
+            <p class="description">Experience your favorite comics like never before with an immersive, beautiful reading interface designed for modern devices and comic enthusiasts.</p>
+            
+            <!-- Email Notification Form -->
+            <div class="notify-form">
+                <h3>🔔 Get Notified When We Launch</h3>
+                <p>Be the first to know when ComicSpinnah Reader becomes available!</p>
+                
+                <form class="email-input-group" onsubmit="handleNotifySubmit(event)">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        placeholder="Enter your email address"
+                        required
+                        id="notify-email"
+                    >
+                    <button type="submit" class="notify-btn">Notify Me</button>
+                </form>
+                
+                <p class="privacy-note">We respect your privacy. No spam, just launch updates.</p>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="/" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);">
+                    ← Back to SpinnahApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Preview Section -->
+    <section class="features-preview">
+        <div class="section-header fade-in">
+            <h2>What's Coming</h2>
+            <p>ComicSpinnah Reader will revolutionize how you experience digital comics.</p>
+        </div>
+        
+        <div class="preview-grid">
+            <div class="preview-card fade-in">
+                <span class="preview-icon">📖</span>
+                <h3>Immersive Reading</h3>
+                <p>Full-screen, distraction-free reading experience that makes you feel like you're holding a real comic book.</p>
+            </div>
+            
+            <div class="preview-card fade-in">
+                <span class="preview-icon">🎯</span>
+                <h3>Smart Panel Navigation</h3>
+                <p>Intelligent panel-by-panel navigation that understands comic layouts and guides your reading flow naturally.</p>
+            </div>
+            
+            <div class="preview-card fade-in">
+                <span class="preview-icon">📚</span>
+                <h3>Library Management</h3>
+                <p>Organize your entire comic collection with smart categorization, reading progress tracking, and recommendations.</p>
+            </div>
+            
+            <div class="preview-card fade-in">
+                <span class="preview-icon">☁️</span>
+                <h3>Cloud Synchronization</h3>
+                <p>Read on any device and pick up exactly where you left off. Your reading progress follows you everywhere.</p>
+            </div>
+            
+            <div class="preview-card fade-in">
+                <span class="preview-icon">🎨</span>
+                <h3>Beautiful Interface</h3>
+                <p>Carefully crafted with the same design principles as SpinnahApp - clean, modern, and intuitive.</p>
+            </div>
+            
+            <div class="preview-card fade-in">
+                <span class="preview-icon">⚡</span>
+                <h3>Lightning Fast</h3>
+                <p>Optimized for speed with instant page turns, smooth zooming, and responsive interactions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Timeline -->
+    <section class="timeline-section">
+        <div class="timeline-content">
+            <h2>Development Roadmap</h2>
+            
+            <div class="timeline-item">
+                <h4>🎨 Design Phase - Q1 2025</h4>
+                <p>UI/UX design, user research, and prototype development</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>⚙️ Core Development - Q2 2025</h4>
+                <p>Building the reading engine, library system, and core features</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>🧪 Beta Testing - Q3 2025</h4>
+                <p>Closed beta with comic enthusiasts and feedback integration</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>🚀 Public Launch - Q4 2025</h4>
+                <p>Official release for all platforms</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 ComicSpinnah Reader. Part of the SpinnahApp ecosystem by ShastLeLow.</p>
+            <p>Coming soon to revolutionize comic reading.</p>
+            <div class="footer-links">
+                <a href="/">SpinnahApp Home</a>
+                <a href="comicspinnah">ComicSpinnah Creator</a>
+                <a href="mailto:info@spinnah.app">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        // Handle notify form submission
+        function handleNotifySubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('notify-email').value;
+            
+            // For now, just show a success message
+            // In production, this would send to your email service
+            const form = event.target;
+            form.innerHTML = `
+                <div style="text-align: center; padding: 1rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+                    <h4 style="margin-bottom: 0.5rem;">Thanks for signing up!</h4>
+                    <p style="margin: 0; opacity: 0.9;">We'll notify you when ComicSpinnah Reader launches.</p>
+                </div>
+            `;
+            
+            // You could integrate with services like:
+            // - Mailchimp
+            // - ConvertKit  
+            // - Your own backend
+            console.log('Email signup:', email);
+        }
+        
+        // Add some entrance animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stagger animation for timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
+        });
+    </script>
+</body>
+</html>
