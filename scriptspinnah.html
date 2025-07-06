@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptSpinnah - Open Source Developer Tool | SpinnahApp</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* ScriptSpinnah specific styles */
+        .script-hero {
+            background: linear-gradient(135deg, #48CAE4 0%, #023047 100%);
+            color: white;
+            padding: 120px 2rem 80px;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .script-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .script-hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .script-hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 600px;
+        }
+        
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-hero {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-github-hero {
+            background: #24292e;
+            color: white;
+        }
+        
+        .btn-github-hero:hover {
+            background: #1a1e22;
+            transform: translateY(-2px);
+        }
+        
+        .btn-docs {
+            background: rgba(255, 255, 255, 0.9);
+            color: #023047;
+        }
+        
+        .btn-docs:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 2rem;
+            background: #f5f5f7;
+        }
+        
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+        
+        .feature-card p {
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+        
+        /* Installation Section */
+        .install-section {
+            padding: 100px 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            color: #1d1d1f;
+        }
+        
+        .code-block {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 2rem;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 1rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: "Terminal";
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 0.8rem;
+            color: #6e6e73;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        
+        /* Community Section */
+        .community-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 2rem;
+            text-align: center;
+        }
+        
+        .community-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .community-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .community-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .community-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-hero {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .community-stats {
+                gap: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (same as main site) -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">SpinnahApp</a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="mobile-menu-button" aria-label="Toggle mobile navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#apps">Apps</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="script-hero">
+        <h1>ScriptSpinnah</h1>
+        <p class="subtitle">macOS Menu Bar Script Runner</p>
+        <p class="description">A lightweight macOS menu bar app for quickly executing shell scripts on specific folders. Perfect for developers, power users, and anyone who regularly runs scripts as part of their workflow.</p>
+        
+        <div class="hero-badges">
+            <span class="badge">🆓 Free & Open Source</span>
+            <span class="badge">🍎 macOS Native</span>
+            <span class="badge">⚡ One-Click Execution</span>
+            <span class="badge">🔒 Security Focused</span>
+        </div>
+        
+        <div class="hero-actions">
+            <a href="https://github.com/spinnah/ScriptSpinnah" class="btn-hero btn-github-hero" target="_blank">
+                📦 View on GitHub
+            </a>
+            <a href="#installation" class="btn-hero btn-docs">
+                🚀 Get Started
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📍</div>
+                <h3>Menu Bar Access</h3>
+                <p>Lives in your macOS menu bar for instant access. No need to dig through applications or remember complex commands.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔗</div>
+                <h3>Script-Folder Pairings</h3>
+                <p>Associate any shell script with a target folder. One-click execution of your most-used automation workflows.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🚀</div>
+                <h3>One-Click Execution</h3>
+                <p>Run your scripts with a single click from the menu bar. Perfect for build scripts, deployment tools, or routine file operations.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🏷️</div>
+                <h3>Custom Names</h3>
+                <p>Give your script pairings memorable display names. Keep your menu organized and intuitive.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔒</div>
+                <h3>Security Focused</h3>
+                <p>Uses macOS security-scoped bookmarks for safe file access. Your scripts run securely with proper permissions.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🎨</div>
+                <h3>Native macOS Design</h3>
+                <p>Beautiful translucent interface with native macOS styling. Feels right at home in your system.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="install-section">
+        <h2 class="section-title">Quick Installation</h2>
+        
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode()">Copy</button>
+            <div id="install-code">
+# Download the latest release
+# Visit: https://github.com/spinnah/ScriptSpinnah/releases
+
+# Requirements: macOS 15 (Sequoia) or later
+
+# Installation steps:
+1. Download the .dmg file from releases
+2. Open the .dmg file  
+3. Drag ScriptSpinnah to your Applications folder
+4. Launch ScriptSpinnah
+5. Grant necessary permissions when prompted
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://github.com/spinnah/ScriptSpinnah/releases" class="btn btn-primary" target="_blank">
+                💾 Download Latest Release
+            </a>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="community-content">
+            <h2>Join the Community</h2>
+            <p>ScriptSpinnah is built by an amazing community of developers. Join us in making development workflows better for everyone.</p>
+            
+            <div class="community-stats">
+                <div class="stat">
+                    <span class="stat-number">⭐ Star</span>
+                    <span class="stat-label">on GitHub</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">🐛 Report</span>
+                    <span class="stat-label">Issues</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">🔄 Fork</span>
+                    <span class="stat-label">& Contribute</span>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://github.com/spinnah/ScriptSpinnah" class="btn btn-secondary" target="_blank">
+                    GitHub Repository
+                </a>
+                <a href="https://github.com/spinnah/ScriptSpinnah/issues" class="btn btn-secondary" target="_blank">
+                    Report an Issue
+                </a>
+                <a href="https://github.com/spinnah/ScriptSpinnah/releases" class="btn btn-secondary" target="_blank">
+                    Download Releases
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 ScriptSpinnah. Part of the SpinnahApp ecosystem by ShastLeLow.</p>
+            <p>Open source and free forever.</p>
+            <div class="footer-links">
+                <a href="https://github.com/spinnah/ScriptSpinnah/blob/main/LICENSE" target="_blank">MIT License</a>
+                <a href="https://github.com/spinnah/ScriptSpinnah#usage" target="_blank">Documentation</a>
+                <a href="mailto:info@spinnah.app">Contact</a>
+                <a href="/">SpinnahApp Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        // Copy code functionality
+        function copyCode() {
+            const code = document.getElementById('install-code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+        
+        // Smooth scrolling for get started button
+        document.querySelector('a[href="#installation"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('installation').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
