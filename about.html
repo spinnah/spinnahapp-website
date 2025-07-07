@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - SpinnahApp by ShastLeLow</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* About page specific styles */
+        .about-hero {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #AF52DE 100%);
+            color: white;
+            padding: 120px 2rem 80px;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .about-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        /* About content sections */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        
+        .about-section {
+            margin-bottom: 4rem;
+        }
+        
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+        
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-section .legal-note {
+            font-style: italic;
+            color: #6e6e73;
+            font-size: 0.95rem;
+            padding: 1rem;
+            background: #f5f5f7;
+            border-radius: 8px;
+            border-left: 4px solid #007AFF;
+        }
+        
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .project-status {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        .status-available {
+            background: #34c759;
+            color: white;
+        }
+        
+        .status-coming-soon {
+            background: #ff9500;
+            color: white;
+        }
+        
+        .project-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6e6e73;
+            margin-bottom: 1rem;
+        }
+        
+        .project-link {
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-link:hover {
+            opacity: 0.7;
+        }
+        
+        /* Privacy highlight section */
+        .privacy-highlight {
+            background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .privacy-highlight h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-highlight p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                padding: 60px 1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .about-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .privacy-highlight {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (same as main site) -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SpinnahApp</a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="mobile-menu-button" aria-label="Toggle mobile navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#apps">Apps</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <h1>About SpinnahApp</h1>
+        <p class="subtitle">Creating native macOS applications that feel at home on your Mac</p>
+    </section>
+
+    <!-- About Content -->
+    <div class="about-content">
+        <!-- Introduction -->
+        <section class="about-section fade-in">
+            <h2>Our Philosophy</h2>
+            <p>I create native macOS applications that I genuinely want to use. When I can't find exactly what I need, or when existing cross-platform solutions feel out of place on macOS, I build it myself.</p>
+            <p>My apps are designed specifically for macOS, taking advantage of native features and following Apple's design principles. This means they feel at home on your Mac rather than like ports from other platforms.</p>
+        </section>
+
+        <!-- Privacy Section -->
+        <div class="privacy-highlight">
+            <h3>🔒 Privacy First</h3>
+            <p>I don't collect any information from you. My apps run entirely on your devices and don't phone home. Some apps may offer optional web functionality through APIs that you would obtain directly from data providers, but this is completely optional—you can use the apps without any external connections if you prefer. Any API usage is strictly between you and the API provider.</p>
+        </div>
+
+        <!-- Current Projects -->
+        <section class="about-section fade-in">
+            <h2>Current Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>
+                        ScriptSpinnah 
+                        <span class="project-status status-available">Available Now</span>
+                    </h3>
+                    <p>A general-purpose macOS menu bar app that allows users to easily run custom scripts against selected folders. Unlike Finder extensions or CLI tools, this app emphasizes accessibility, feedback, and flexibility.</p>
+                    <a href="https://github.com/spinnah/ScriptSpinnah" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>
+                        ComicSpinnah 
+                        <span class="project-status status-coming-soon">Fall 2025</span>
+                    </h3>
+                    <p>A native macOS app for managing comic book collections. Built using macOS 26 Liquid Glass design system and modern SwiftUI patterns, it focuses on four core functions: Discovery, Cleaning, Metadata, and Reading. Some functionality will require third-party APIs that you provide.</p>
+                    <a href="/comicspinnah.html" class="project-link">Learn More →</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>
+                        ComicSpinnah Reader 
+                        <span class="project-status status-coming-soon">Fall 2025</span>
+                    </h3>
+                    <p>A companion app for iPadOS and iOS that lets you read your comics on your mobile devices, designed to work seamlessly with ComicSpinnah.</p>
+                    <a href="/comicspinnahreader.html" class="project-link">Learn More →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Philosophy -->
+        <section class="about-section fade-in">
+            <h2>Pricing Philosophy</h2>
+            <p>For paid applications, I currently use a one-time purchase model. My intention is to maintain this approach and keep apps updated with each annual macOS release. I don't plan to move to subscription pricing unless I add features that create ongoing operational costs—and even then, existing functionality would remain available without requiring a subscription.</p>
+            <div class="legal-note">
+                <strong>Please note:</strong> While I'm committed to supporting my apps, software development involves many variables, and this represents my current intentions rather than a binding commitment.
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="about-section fade-in">
+            <h2>Get in Touch</h2>
+            <p>Have questions, feedback, or just want to say hello? I'd love to hear from you.</p>
+            <p>You can reach me at <a href="mailto:info@spinnah.app" class="project-link">info@spinnah.app</a> or connect with me through any of the project repositories on GitHub.</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 SpinnahApp. Published by ShastLeLow.</p>
+            <p>Building innovative tools for creative professionals.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:info@spinnah.app">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
