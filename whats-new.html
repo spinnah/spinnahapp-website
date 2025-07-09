@@ -1,47 +1,295 @@
 <!DOCTYPE html>
-<html lang="en" data-color-scheme="auto">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ComicSpinnah | What's New</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New - Spinnah</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* What's New page specific styles */
+        .whats-new-hero {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            padding: 80px 2rem 60px;
+            text-align: center;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .whats-new-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 4px 8px rgba(214, 40, 0, 0.4));
+        }
+        
+        .whats-new-hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 600px;
+        }
+        
+        /* Content sections */
+        .whats-new-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        
+        .update-section {
+            margin-bottom: 4rem;
+        }
+        
+        .update-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .update-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+        
+        .update-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .update-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+        
+        .update-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .update-date {
+            font-size: 0.9rem;
+            color: #007AFF;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .update-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+        
+        .update-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6e6e73;
+            margin-bottom: 1rem;
+        }
+        
+        .update-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .update-features li {
+            padding: 0.5rem 0;
+            color: #1d1d1f;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .update-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #34c759;
+            font-weight: bold;
+        }
+        
+        /* Coming soon section */
+        .coming-soon {
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .coming-soon h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .coming-soon p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .whats-new-content {
+                padding: 60px 1rem;
+            }
+            
+            .update-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .coming-soon {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-content">
-      <img src="assets/comicspinnah-macos-icon.png" alt="App Icon" class="app-icon" />
-      <span class="app-name">ComicSpinnah</span>
-      <nav class="site-nav">
-        <a href="index.html">Overview</a>
-        <a href="whats-new.html" class="active">What's New</a>
-        <a href="blog.html">Blog</a>
-        <a href="https://github.com/ShastLeLow/comicspinnah-app/issues" target="_blank" rel="noopener">GitHub</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation will be injected here by navigation.js -->
 
-  <main>
-    <section class="hero-text">
-      <h1>What's New</h1>
-      <ul>
-        <li><strong>May 2025:</strong> Added animated transitions to app showcase</li>
-        <li><strong>April 2025:</strong> Spinner rack UI added to roadmap</li>
-      </ul>
+    <!-- Hero Section -->
+    <section class="whats-new-hero">
+        <h1>What's New</h1>
+        <p class="subtitle">Latest updates and improvements across all SpinnahApp products</p>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="copyright">
-        &copy; 2025 ComicSpinnah. All rights reserved.
-      </div>
-      <div class="theme-toggle">
-        <button class="theme-btn" data-mode="light">Light</button>
-        <button class="theme-btn" data-mode="dark">Dark</button>
-        <button class="theme-btn active" data-mode="auto">Auto</button>
-      </div>
+    <!-- Content -->
+    <div class="whats-new-content">
+        <!-- Recent Updates -->
+        <section class="update-section fade-in">
+            <h2>Recent Updates</h2>
+            
+            <ul class="update-list">
+                <li class="update-item">
+                    <div class="update-date">July 2025</div>
+                    <div class="update-title">Website Redesign</div>
+                    <div class="update-description">
+                        Completely redesigned the SpinnahApp website with a modern, cohesive design system that better represents our brand and products.
+                    </div>
+                    <ul class="update-features">
+                        <li>New navigation component for consistency across all pages</li>
+                        <li>Updated color scheme and typography</li>
+                        <li>Improved mobile responsiveness</li>
+                        <li>Enhanced accessibility features</li>
+                    </ul>
+                </li>
+                
+                <li class="update-item">
+                    <div class="update-date">June 2025</div>
+                    <div class="update-title">ScriptSpinnah Improvements</div>
+                    <div class="update-description">
+                        Enhanced the menu bar app with better performance and user experience improvements.
+                    </div>
+                    <ul class="update-features">
+                        <li>Improved script execution performance</li>
+                        <li>Better error handling and user feedback</li>
+                        <li>Enhanced accessibility for screen readers</li>
+                        <li>Updated documentation and examples</li>
+                    </ul>
+                </li>
+                
+                <li class="update-item">
+                    <div class="update-date">June 2025</div>
+                    <div class="update-title">ComicSpinnah Development</div>
+                    <div class="update-description">
+                        Made significant progress on the ComicSpinnah app development, focusing on the core architecture and design system.
+                    </div>
+                    <ul class="update-features">
+                        <li>Implemented macOS 26 Liquid Glass design system</li>
+                        <li>Built core data models and persistence layer</li>
+                        <li>Designed user interface mockups and prototypes</li>
+                        <li>Established development workflow and testing framework</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Coming Soon -->
+        <div class="coming-soon">
+            <h3>🚀 Coming Soon</h3>
+            <p>We're working hard on ComicSpinnah and ComicSpinnah Reader. These apps will bring powerful comic management and reading capabilities to macOS and iOS, with a focus on privacy and user experience.</p>
+        </div>
+
+        <!-- Roadmap -->
+        <section class="update-section fade-in">
+            <h2>Development Roadmap</h2>
+            
+            <ul class="update-list">
+                <li class="update-item">
+                    <div class="update-date">Fall 2025</div>
+                    <div class="update-title">ComicSpinnah Beta Release</div>
+                    <div class="update-description">
+                        Initial beta release of ComicSpinnah for macOS, focusing on core functionality and user feedback.
+                    </div>
+                </li>
+                
+                <li class="update-item">
+                    <div class="update-date">Winter 2025</div>
+                    <div class="update-title">ComicSpinnah Reader iOS Beta</div>
+                    <div class="update-description">
+                        Beta release of the companion iOS app for reading comics on iPhone and iPad.
+                    </div>
+                </li>
+                
+                <li class="update-item">
+                    <div class="update-date">Spring 2026</div>
+                    <div class="update-title">Public Release</div>
+                    <div class="update-description">
+                        Full public release of both ComicSpinnah and ComicSpinnah Reader with all planned features.
+                    </div>
+                </li>
+            </ul>
+        </section>
     </div>
-  </footer>
-  <script src="main.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 SpinnahApp. Published by ShastLeLow.</p>
+            <p>Building innovative tools for creative professionals.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:info@spinnah.app">Contact</a>
+            </div>
+            <div class="footer-theme-switcher">
+                <button class="footer-theme-btn" data-mode="light" title="Light Mode">☀️</button>
+                <button class="footer-theme-btn" data-mode="dark" title="Dark Mode">🌙</button>
+                <button class="footer-theme-btn" data-mode="auto" title="Auto/System">🖥️</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

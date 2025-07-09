@@ -1,48 +1,324 @@
 <!DOCTYPE html>
-<html lang="en" data-color-scheme="auto">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ComicSpinnah | Blog</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Spinnah</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Blog page specific styles */
+        .blog-hero {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            padding: 80px 2rem 60px;
+            text-align: center;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .blog-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 4px 8px rgba(214, 40, 0, 0.4));
+        }
+        
+        .blog-hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 600px;
+        }
+        
+        /* Blog content */
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        
+        .blog-post {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #6e6e73;
+        }
+        
+        .blog-post-date {
+            background: #007AFF;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        .blog-post-category {
+            background: #34c759;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        .blog-post h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+            line-height: 1.3;
+        }
+        
+        .blog-post p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-post .excerpt {
+            font-size: 1.2rem;
+            color: #6e6e73;
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 4px solid #007AFF;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .read-more:hover {
+            opacity: 0.7;
+        }
+        
+        /* Featured post */
+        .featured-post {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 4rem;
+        }
+        
+        .featured-post h2 {
+            color: white;
+        }
+        
+        .featured-post p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .featured-post .excerpt {
+            color: rgba(255, 255, 255, 0.8);
+            border-left-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .featured-post .read-more {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        /* Newsletter signup */
+        .newsletter-signup {
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .newsletter-signup h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-signup p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .blog-content {
+                padding: 60px 1rem;
+            }
+            
+            .blog-post {
+                padding: 2rem;
+            }
+            
+            .blog-post h2 {
+                font-size: 1.5rem;
+            }
+            
+            .newsletter-signup {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-content">
-      <img src="assets/comicspinnah-macos-icon.png" alt="App Icon" class="app-icon" />
-      <span class="app-name">ComicSpinnah</span>
-      <nav class="site-nav">
-        <a href="index.html">Overview</a>
-        <a href="whats-new.html">What's New</a>
-        <a href="blog.html" class="active">Blog</a>
-        <a href="https://github.com/ShastLeLow/comicspinnah-app/issues" target="_blank" rel="noopener">GitHub</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation will be injected here by navigation.js -->
 
-  <main>
-    <section class="hero-text">
-      <h1>Blog</h1>
-      <article>
-        <h2>Why I Created ComicSpinnah</h2>
-        <p><em>Posted May 2025</em></p>
-        <p>Managing comics shouldn't require 10 apps. ComicSpinnah is my attempt to bring everything into one clean workflow for collectors and indie creators alike.</p>
-      </article>
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <h1>Blog</h1>
+        <p class="subtitle">Thoughts on design, development, and building better tools</p>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="copyright">
-        &copy; 2025 ComicSpinnah. All rights reserved.
-      </div>
-      <div class="theme-toggle">
-        <button class="theme-btn" data-mode="light">Light</button>
-        <button class="theme-btn" data-mode="dark">Dark</button>
-        <button class="theme-btn active" data-mode="auto">Auto</button>
-      </div>
+    <!-- Blog Content -->
+    <div class="blog-content">
+        <!-- Featured Post -->
+        <article class="blog-post featured-post fade-in">
+            <div class="blog-post-meta">
+                <span class="blog-post-date">July 2025</span>
+                <span class="blog-post-category">Featured</span>
+            </div>
+            <h2>Why I Created SpinnahApp</h2>
+            <p class="excerpt">
+                "When I can't find exactly what I need, or when existing solutions feel out of place on macOS, I build it myself."
+            </p>
+            <p>
+                SpinnahApp started from a simple frustration: too many cross-platform tools that don't feel native to macOS. 
+                As someone who spends hours every day on my Mac, I wanted tools that not only work well but feel like they belong here.
+            </p>
+            <p>
+                Each app I create is designed specifically for macOS, taking advantage of native features and following Apple's design principles. 
+                This means they feel at home on your Mac rather than like ports from other platforms.
+            </p>
+            <a href="#" class="read-more">Read Full Post →</a>
+        </article>
+
+        <!-- Regular Posts -->
+        <article class="blog-post fade-in">
+            <div class="blog-post-meta">
+                <span class="blog-post-date">June 2025</span>
+                <span class="blog-post-category">Development</span>
+            </div>
+            <h2>The Art of Menu Bar Apps</h2>
+            <p class="excerpt">
+                "ScriptSpinnah taught me that the best menu bar apps are invisible until you need them."
+            </p>
+            <p>
+                Building ScriptSpinnah was an exercise in restraint. Menu bar apps have limited real estate, 
+                so every pixel counts. The challenge was creating something powerful enough to be useful 
+                but simple enough to not get in your way.
+            </p>
+            <p>
+                The result is an app that lives quietly in your menu bar, ready to execute scripts 
+                against selected folders with just a few clicks. No complex setup, no overwhelming UI—just 
+                the tools you need when you need them.
+            </p>
+            <a href="#" class="read-more">Read Full Post →</a>
+        </article>
+
+        <article class="blog-post fade-in">
+            <div class="blog-post-meta">
+                <span class="blog-post-date">June 2025</span>
+                <span class="blog-post-category">Design</span>
+            </div>
+            <h2>Designing for macOS 26: Liquid Glass</h2>
+            <p class="excerpt">
+                "ComicSpinnah is my first app built entirely with the new Liquid Glass design system."
+            </p>
+            <p>
+                Apple's Liquid Glass design system in macOS 26 represents a significant evolution in how 
+                we think about interface design. It's not just about transparency and blur effects—it's 
+                about creating interfaces that feel alive and responsive.
+            </p>
+            <p>
+                ComicSpinnah is being built from the ground up with these principles in mind. Every 
+                interaction, every animation, every visual element is designed to feel fluid and natural. 
+                It's an exciting challenge that's pushing me to think differently about user experience.
+            </p>
+            <a href="#" class="read-more">Read Full Post →</a>
+        </article>
+
+        <article class="blog-post fade-in">
+            <div class="blog-post-meta">
+                <span class="blog-post-date">May 2025</span>
+                <span class="blog-post-category">Privacy</span>
+            </div>
+            <h2>Privacy-First App Development</h2>
+            <p class="excerpt">
+                "Your data should stay on your devices. Period."
+            </p>
+            <p>
+                In an era where every app seems to want to collect your data, I'm taking a different approach. 
+                All SpinnahApp products are designed with privacy as a core principle, not an afterthought.
+            </p>
+            <p>
+                This means no tracking, no analytics, no data collection. Your files stay on your devices, 
+                and any optional web functionality uses APIs that you control directly. It's a simple 
+                philosophy: if I don't need your data to provide the service, I won't ask for it.
+            </p>
+            <a href="#" class="read-more">Read Full Post →</a>
+        </article>
+
+        <!-- Newsletter Signup -->
+        <div class="newsletter-signup">
+            <h3>📧 Stay Updated</h3>
+            <p>Get notified about new releases, updates, and behind-the-scenes insights from SpinnahApp development.</p>
+            <p><em>Coming soon: Newsletter signup functionality</em></p>
+        </div>
     </div>
-  </footer>
-  <script src="main.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 SpinnahApp. Published by ShastLeLow.</p>
+            <p>Building innovative tools for creative professionals.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:info@spinnah.app">Contact</a>
+            </div>
+            <div class="footer-theme-switcher">
+                <button class="footer-theme-btn" data-mode="light" title="Light Mode">☀️</button>
+                <button class="footer-theme-btn" data-mode="dark" title="Dark Mode">🌙</button>
+                <button class="footer-theme-btn" data-mode="auto" title="Auto/System">🖥️</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

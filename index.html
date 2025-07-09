@@ -7,20 +7,7 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <!-- Header -->
-    <nav>
-      <div class="nav-container">
-        <img src="assets/spinnahapp-logo.png" alt="Spinnah" class="logo" />
-        <span class="site-title">Spinnah</span>
-        <ul class="nav-links">
-          <li><a href="#home" class="active">Overview</a></li>
-          <li><a href="#apps">Apps</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="whats-new.html">What's New</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </div>
-    </nav>
+    <!-- Navigation will be injected here by navigation.js -->
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -134,19 +121,7 @@
         </div>
     </footer>
 
-    <script>
-      // Auto-update active class on nav links
-      document.addEventListener('DOMContentLoaded', function() {
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            // For anchor links, allow default scroll
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-          });
-        });
-      });
-    </script>
+    <script src="scripts/navigation.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 </html>
