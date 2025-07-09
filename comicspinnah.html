@@ -3,35 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ComicSpinnah - SpinnahApp</title>
+    <title>ComicSpinnah - Spinnah</title>
     <link rel="stylesheet" href="styles/main.css">
     <style>
-        /* Additional styles for iframe integration */
-        .app-iframe-container {
-            width: 100%;
-            min-height: 100vh;
-            margin-top: -80px; /* Compensate for fixed nav */
-            padding-top: 80px; /* Space for fixed nav */
-        }
-        
-        .app-iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-            display: block;
-        }
-        
-        .iframe-intro {
+        /* ComicSpinnah page specific styles */
+        .comicspinnah-hero {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
-            padding: 2rem;
+            padding: 80px 2rem 60px;
             text-align: center;
-            margin-top: 80px; /* Space for fixed nav */
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .iframe-intro h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .comicspinnah-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -40,138 +32,325 @@
             filter: drop-shadow(0 4px 8px rgba(214, 40, 0, 0.4));
         }
         
-        .iframe-intro p {
-            font-size: 1.2rem;
+        .comicspinnah-hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
             background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             max-width: 600px;
+        }
+        
+        .comicspinnah-hero .coming-soon {
+            background: rgba(255, 149, 0, 0.1);
+            color: #ff9500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            border: 2px solid #ff9500;
+            margin-top: 1rem;
+        }
+        
+        /* Hero visual */
+        .hero-visual {
+            margin-top: 3rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .hero-visual img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-visual img:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Content sections */
+        .comicspinnah-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        
+        .feature-section {
+            margin-bottom: 6rem;
+        }
+        
+        .feature-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #1d1d1f;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .feature-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+        
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #6e6e73;
+        }
+        
+        /* Screenshot showcase */
+        .screenshot-showcase {
+            background: #f5f5f7;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 20px;
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
-        /* Hide default body overflow when iframe is present */
-        body.iframe-page {
-            overflow-x: hidden;
+        .screenshot-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
         
-        /* Mobile optimizations */
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .screenshot-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .cta-section h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Mobile responsive */
         @media (max-width: 768px) {
-            .iframe-intro h1 {
+            .comicspinnah-content {
+                padding: 60px 1rem;
+            }
+            
+            .feature-section h2 {
                 font-size: 2rem;
             }
             
-            .iframe-intro p {
-                font-size: 1rem;
-                padding: 0 1rem;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
             
-            .app-iframe {
-                height: calc(100vh - 80px);
+            .screenshot-grid {
+                grid-template-columns: 1fr;
             }
-        }
-        
-        /* Loading animation for iframe */
-        .iframe-loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-            background: #f5f5f7;
-        }
-        
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #007AFF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-visual {
+                margin-top: 2rem;
+            }
         }
     </style>
 </head>
-<body class="iframe-page">
-    <!-- Navigation (same as main site) -->
-    <header class="site-header">
-      <div class="header-content">
-        <div class="header-left">
-          <a href="index.html"><img src="assets/spinnahapp-logo.png" alt="SpinnahApp Logo" class="site-logo" /></a>
-          <a href="index.html" class="site-title">SpinnahApp</a>
-        </div>
-        <nav class="site-nav">
-          <a href="index.html">Overview</a>
-          <a href="#apps">Apps</a>
-          <a href="about.html">About</a>
-          <a href="whats-new.html">What's New</a>
-          <a href="blog.html">Blog</a>
-        </nav>
-      </div>
-    </header>
+<body>
+    <!-- Navigation will be injected here by navigation.js -->
 
-    <!-- Brief intro section -->
-    <section class="iframe-intro">
+    <!-- Hero Section -->
+    <section class="comicspinnah-hero">
         <h1>ComicSpinnah</h1>
-        <p>A powerful tool for comic creators and storytellers. Part of the SpinnahApp ecosystem.</p>
+        <p class="subtitle">A modern macOS app for collectors and creators</p>
+        <p class="coming-soon">Coming Soon. Exclusively on the App Store.</p>
+        
+        <div class="hero-visual">
+            <img src="assets/app-on-macbook-pro-desktop-blur.png" alt="ComicSpinnah on MacBook Pro" />
+        </div>
     </section>
 
-    <!-- Loading indicator -->
-    <div class="iframe-loading" id="loading">
-        <div class="loading-spinner"></div>
+    <!-- Content -->
+    <div class="comicspinnah-content">
+        <!-- Features Section -->
+        <section class="feature-section fade-in">
+            <h2>Built for Comic Enthusiasts</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Discovery</h3>
+                    <p>Find new comics and series with intelligent recommendations and powerful search capabilities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧹</div>
+                    <h3>Cleaning</h3>
+                    <p>Organize and clean your comic collection with automated tools and batch processing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Metadata</h3>
+                    <p>Rich metadata management with support for custom tags, ratings, and detailed information.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Reading</h3>
+                    <p>Beautiful reading experience with customizable layouts and smooth navigation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshot Showcase -->
+        <section class="screenshot-showcase fade-in">
+            <h2>See It in Action</h2>
+            
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="assets/comicspinnah-screenshot.png" alt="ComicSpinnah Interface" />
+                    <div class="screenshot-caption">Main Interface</div>
+                </div>
+                
+                <div class="screenshot-item">
+                    <img src="assets/app-on-mbp.png" alt="ComicSpinnah on MacBook" />
+                    <div class="screenshot-caption">On MacBook Pro</div>
+                </div>
+                
+                <div class="screenshot-item">
+                    <img src="assets/macbook-pro-m4-14-desktop.png" alt="ComicSpinnah on Modern MacBook" />
+                    <div class="screenshot-caption">Modern MacBook Experience</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Ready to Transform Your Comic Collection?</h3>
+            <p>ComicSpinnah brings the power of professional comic management to your Mac, with a focus on privacy and user experience.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/spinnah/ComicSpinnah" class="btn btn-primary" target="_blank">Follow Development</a>
+                <a href="mailto:info@spinnah.app" class="btn btn-secondary">Get Early Access</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Iframe container for ComicSpinnah content -->
-    <div class="app-iframe-container">
-        <iframe 
-            src="https://comicspinnah.com" 
-            class="app-iframe"
-            title="ComicSpinnah Application"
-            onload="hideLoading()"
-            frameborder="0"
-            allowfullscreen>
-            <p>Your browser doesn't support iframes. Please visit <a href="https://comicspinnah.com">ComicSpinnah directly</a>.</p>
-        </iframe>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 SpinnahApp. Published by ShastLeLow.</p>
+            <p>Building innovative tools for creative professionals.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:info@spinnah.app">Contact</a>
+            </div>
+            <div class="footer-theme-switcher">
+                <button class="footer-theme-btn" data-mode="light" title="Light Mode">☀️</button>
+                <button class="footer-theme-btn" data-mode="dark" title="Dark Mode">🌙</button>
+                <button class="footer-theme-btn" data-mode="auto" title="Auto/System">🖥️</button>
+            </div>
+        </div>
+    </footer>
 
+    <script src="scripts/navigation.js"></script>
     <script src="scripts/main.js"></script>
-    <script>
-        // Hide loading indicator when iframe loads
-        function hideLoading() {
-            const loading = document.getElementById('loading');
-            if (loading) {
-                loading.style.display = 'none';
-            }
-        }
-        
-        // Handle iframe responsiveness
-        function resizeIframe() {
-            const iframe = document.querySelector('.app-iframe');
-            if (iframe) {
-                // Adjust iframe height based on window size
-                iframe.style.height = (window.innerHeight - 140) + 'px'; // Account for nav and intro
-            }
-        }
-        
-        // Resize on load and window resize
-        window.addEventListener('load', resizeIframe);
-        window.addEventListener('resize', resizeIframe);
-        
-        // Ensure mobile menu works on this page too
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality is already in main.js
-            // Just ensure navigation links work properly with iframe
-            document.querySelectorAll('.nav-links a[href^="/#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Navigate to main site with hash
-                    window.location.href = this.getAttribute('href');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
