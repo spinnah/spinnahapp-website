@@ -2,8 +2,8 @@
 class Navigation {
     constructor() {
         this.navData = [
-            { href: '#home', text: 'Overview', id: 'overview' },
-            { href: '#apps', text: 'Apps', id: 'apps' },
+            { href: 'index.html', text: 'Overview', id: 'overview' },
+            { href: 'index.html#apps', text: 'Apps', id: 'apps' },
             { href: 'about.html', text: 'About', id: 'about' },
             { href: 'whats-new.html', text: "What's New", id: 'whats-new' },
             { href: 'blog.html', text: 'Blog', id: 'blog' }
@@ -22,12 +22,12 @@ class Navigation {
         
         // Handle index.html with anchor links
         if (currentPage === 'index.html' || currentPage === '') {
-            if (item.href === '#home') {
+            if (item.href === 'index.html') {
                 // Check if we're on the home section (no hash or #home hash)
                 const hash = window.location.hash;
                 return !hash || hash === '#home';
             }
-            if (item.href === '#apps') {
+            if (item.href === 'index.html#apps') {
                 return window.location.hash === '#apps';
             }
         }
