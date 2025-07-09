@@ -7,25 +7,19 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Header -->
     <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">SpinnahApp</a>
-            
-            <!-- Hamburger Menu Button -->
-            <button class="mobile-menu-button" aria-label="Toggle mobile navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#apps">Apps</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+      <div class="nav-container">
+        <img src="assets/spinnahapp-logo.png" alt="Spinnah" class="logo" />
+        <span class="site-title">Spinnah</span>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Overview</a></li>
+          <li><a href="#apps">Apps</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="whats-new.html">What's New</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Hero Section -->
@@ -132,9 +126,27 @@
                 <a href="support.html">Support</a>
                 <a href="mailto:info@spinnah.app">Contact</a>
             </div>
+            <div class="footer-theme-switcher">
+                <button class="footer-theme-btn" data-mode="light" title="Light Mode">☀️</button>
+                <button class="footer-theme-btn" data-mode="dark" title="Dark Mode">🌙</button>
+                <button class="footer-theme-btn" data-mode="auto" title="Auto/System">🖥️</button>
+            </div>
         </div>
     </footer>
 
+    <script>
+      // Auto-update active class on nav links
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            // For anchor links, allow default scroll
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      });
+    </script>
     <script src="scripts/main.js"></script>
 </body>
 </html>

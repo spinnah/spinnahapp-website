@@ -8,11 +8,10 @@
     <style>
         /* Coming Soon specific styles */
         .coming-soon-hero {
-            background: linear-gradient(135deg, #A8E6CF 0%, #3D5A80 100%);
-            color: white;
-            padding: 120px 2rem 80px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            padding: 80px 2rem 60px;
             text-align: center;
-            min-height: 100vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -54,20 +53,31 @@
             font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 700;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 4px 8px rgba(214, 40, 0, 0.4));
         }
         
         .coming-soon-hero .subtitle {
             font-size: 1.8rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 300;
         }
         
         .coming-soon-hero .description {
             font-size: 1.3rem;
             margin-bottom: 3rem;
-            opacity: 0.85;
+            background: linear-gradient(135deg, #d62800 0%, #ffce00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1.6;
         }
         
@@ -247,25 +257,21 @@
 </head>
 <body>
     <!-- Navigation (same as main site) -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">SpinnahApp</a>
-            
-            <!-- Hamburger Menu Button -->
-            <button class="mobile-menu-button" aria-label="Toggle mobile navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#apps">Apps</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
+    <header class="site-header">
+      <div class="header-content">
+        <div class="header-left">
+          <a href="index.html"><img src="assets/spinnahapp-logo.png" alt="SpinnahApp Logo" class="site-logo" /></a>
+          <a href="index.html" class="site-title">SpinnahApp</a>
         </div>
-    </nav>
+        <nav class="site-nav">
+          <a href="index.html">Overview</a>
+          <a href="#apps">Apps</a>
+          <a href="about.html">About</a>
+          <a href="whats-new.html">What's New</a>
+          <a href="blog.html">Blog</a>
+        </nav>
+      </div>
+    </header>
 
     <!-- Coming Soon Hero Section -->
     <section class="coming-soon-hero">
@@ -378,12 +384,18 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 ComicSpinnah Reader. Part of the SpinnahApp ecosystem by ShastLeLow.</p>
-            <p>Coming soon to revolutionize comic reading.</p>
+            <p>&copy; 2025 SpinnahApp. Published by ShastLeLow.</p>
+            <p>Building innovative tools for creative professionals.</p>
             <div class="footer-links">
-                <a href="index.html">SpinnahApp Home</a>
-                <a href="comicspinnah">ComicSpinnah Creator</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
                 <a href="mailto:info@spinnah.app">Contact</a>
+            </div>
+            <div class="footer-theme-switcher">
+                <button class="footer-theme-btn" data-mode="light" title="Light Mode">☀️</button>
+                <button class="footer-theme-btn" data-mode="dark" title="Dark Mode">🌙</button>
+                <button class="footer-theme-btn" data-mode="auto" title="Auto/System">🖥️</button>
             </div>
         </div>
     </footer>
